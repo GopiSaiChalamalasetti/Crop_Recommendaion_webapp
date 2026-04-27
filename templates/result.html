@@ -1,10 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Prediction Result</title>
+<style>
+body{
+font-family:Arial;
+background:#e8f5e9;
+text-align:center;
+padding-top:80px;
+}
+
+.box{
+background:white;
+width:500px;
+margin:auto;
+padding:35px;
+border-radius:20px;
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.crop{
+font-size:22px;
+margin:18px;
+color:#2e7d32;
+font-weight:bold;
+}
+
+button{
+background:#1565c0;
+color:white;
+padding:12px 25px;
+border:none;
+border-radius:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
 <h2>Top 3 Recommended Crops</h2>
 
 {% for crop,prob in top3 %}
-
-<p>
-{{crop}} :
-{{prob|floatformat:2}}
-</p>
-
+<div class="crop">
+{{crop}} - {{prob|floatformat:2}}
+</div>
 {% endfor %}
+
+<br>
+<a href="/predict/">
+<button>Try Again</button>
+</a>
+
+</div>
+
+</body>
+</html>
