@@ -1,0 +1,10 @@
+<h2>Top 3 Recommended Crops</h2>
+
+{% for crop,prob in top3 %}
+
+<p>
+{{crop}} :
+{{prob|floatformat:2}}
+</p>
+
+{% endfor %}

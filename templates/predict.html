@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop_Prediction</title>
+</head>
+<body>
+    <h2>Crop Prediction</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<input name="N" placeholder="Nitrogen" required><br><br>
+<input name="P" placeholder="Phosphorus" required><br><br>
+<input name="K" placeholder="Potassium" required><br><br>
+<input name="temperature" placeholder="temperature" required><br><br>
+<input name="humidity" placeholder="humidity" required><br><br>
+<input name="ph" placeholder="ph" required><br><br>
+<input name="rainfall" placeholder="rainfall" required><br><br>
+
+<button type="submit">
+Predict
+</button>
+
+</form>
+</body>
+</html>
