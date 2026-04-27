@@ -38,7 +38,7 @@ Based on the given soil and climate conditions, the following crops are predicte
 </p>
 {% for crop,prob in top3 %}
 <div class="crop">
-{{crop}} — {{prob|floatformat:2}}
+{{crop}} — {{prob}}%
 </div>
 {% endfor %}
 <p>

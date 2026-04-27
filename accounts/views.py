@@ -75,10 +75,14 @@ def predict_crop(request):
         probs=model.predict_proba(sample)[0]
         classes=model.classes_
 
-        top3=sorted(zip(classes,probs),
-                        key=lambda x:x[1],
-                        reverse=True)[:3]
-
+        top3 = [
+        (crop, round(prob*100,2))
+        for crop,prob in sorted(
+        zip(classes,probs),
+        key=lambda x:x[1],
+        reverse=True
+        )[:3]
+        ]
         return render(request,'result.html',{'top3':top3})
 
     return render(request,'predict.html')
