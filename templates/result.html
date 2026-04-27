@@ -1,57 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Prediction Result</title>
+<title>Results</title>
 <style>
 body{
 font-family:Arial;
-background:#e8f5e9;
-text-align:center;
-padding-top:80px;
+background: linear-gradient(135deg,#d4fc79,#96e6a1);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
 }
-
-.box{
+.container{
 background:white;
-width:500px;
-margin:auto;
-padding:35px;
+padding:45px;
 border-radius:20px;
-box-shadow:0 8px 20px rgba(0,0,0,.15);
+box-shadow:0 8px 25px rgba(0,0,0,.2);
+width:550px;
+text-align:center;
 }
-
+h2{color:#2e7d32;}
+p{color:#444;line-height:1.6;}
 .crop{
 font-size:22px;
-margin:18px;
-color:#2e7d32;
 font-weight:bold;
+margin:18px;
+color:#1b5e20;
 }
-
-button{
-background:#1565c0;
-color:white;
-padding:12px 25px;
-border:none;
-border-radius:10px;
-}
+button{background:#2e7d32;color:white;padding:12px 30px;border:none;border-radius:10px;}
 </style>
 </head>
 <body>
-
-<div class="box">
+<div class="container">
 <h2>Top 3 Recommended Crops</h2>
-
+<p>
+Based on the given soil and climate conditions, the following crops are predicted as most suitable.
+</p>
 {% for crop,prob in top3 %}
 <div class="crop">
-{{crop}} - {{prob|floatformat:2}}
+{{crop}} — {{prob|floatformat:2}}
 </div>
 {% endfor %}
-
-<br>
-<a href="/predict/">
-<button>Try Again</button>
-</a>
-
+<p>
+These recommendations are generated using a trained machine learning model to support crop planning.
+</p>
+<a href="/predict/"><button>Try Again</button></a>
 </div>
-
 </body>
 </html>

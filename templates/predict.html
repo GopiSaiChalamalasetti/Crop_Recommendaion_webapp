@@ -1,50 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Crop Prediction</title>
+<title>Prediction</title>
 <style>
 body{
-    font-family:Arial;
-background:#f1f8e9;
-text-align:center;
-padding-top:40px;
+font-family:Arial;
+background: linear-gradient(135deg,#d4fc79,#96e6a1);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
 }
-
 .container{
 background:white;
-width:500px;
-margin:auto;
-padding:35px;
+padding:40px;
 border-radius:20px;
-box-shadow:0 8px 20px rgba(0,0,0,.15);
+box-shadow:0 8px 25px rgba(0,0,0,.2);
+width:450px;
+text-align:center;
 }
-
-input{
-width:85%;
-padding:12px;
-margin:8px;
-border:1px solid #ccc;
-border-radius:10px;
-}
-
-button{
-background:#388e3c;
-color:white;
-padding:14px 30px;
-border:none;
-border-radius:10px;
-font-size:16px;
-}
+h2{color:#2e7d32;}
+p{color:#555;}
+input{width:90%;padding:12px;margin:8px;border:1px solid #ccc;border-radius:10px;}
+button{background:#2e7d32;color:white;padding:12px 30px;border:none;border-radius:10px;}
 </style>
 </head>
 <body>
-
 <div class="container">
-<h2>Enter Soil Details</h2>
-
+<h2>Enter Soil Parameters</h2>
+<p>Provide nutrient and environmental values for crop prediction.</p>
 <form method="POST">
 {% csrf_token %}
-
 <input name="N" placeholder="Nitrogen" required>
 <input name="P" placeholder="Phosphorus" required>
 <input name="K" placeholder="Potassium" required>
@@ -52,12 +38,8 @@ font-size:16px;
 <input name="humidity" placeholder="Humidity" required>
 <input name="ph" placeholder="pH" required>
 <input name="rainfall" placeholder="Rainfall" required>
-
-<br><br>
-<button type="submit">Predict Crop</button>
-
+<button type="submit">Predict Crop</button required>
 </form>
 </div>
-
 </body>
 </html>
