@@ -1,45 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Prediction</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prediction Engine | SmartAgri</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-body{
-font-family:Arial;
-background: linear-gradient(135deg,#d4fc79,#96e6a1);
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-.container{
-background:white;
-padding:40px;
-border-radius:20px;
-box-shadow:0 8px 25px rgba(0,0,0,.2);
-width:450px;
-text-align:center;
-}
-h2{color:#2e7d32;}
-p{color:#555;}
-input{width:90%;padding:12px;margin:8px;border:1px solid #ccc;border-radius:10px;}
-button{background:#2e7d32;color:white;padding:12px 30px;border:none;border-radius:10px;}
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background: #f0fdf4; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 30px 20px; }
+    .card {
+        background: #ffffff; padding: 40px 45px; border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.04); width: 100%; max-width: 650px;
+        animation: fadeUp 0.5s ease-out;
+    }
+    .header { text-align: center; margin-bottom: 35px; }
+    h2 { color: #065f46; font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    p { color: #6b7280; font-size: 0.95rem; }
+    
+    .section-title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #059669; font-weight: 700; margin: 25px 0 15px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+    
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .input-group { text-align: left; }
+    .input-group label { display: block; font-size: 0.85rem; color: #374151; font-weight: 600; margin-bottom: 6px; }
+    .input-group input {
+        width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px;
+        font-size: 0.95rem; background: #f9fafb; transition: all 0.2s;
+    }
+    .input-group input:focus { background: #fff; border-color: #059669; box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.1); outline: none; }
+    .full-width { grid-column: 1 / -1; }
+    
+    .btn {
+        width: 100%; background: #059669; color: white; padding: 16px; border: none;
+        border-radius: 10px; font-size: 1.05rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; margin-top: 30px;
+    }
+    .btn:hover { background: #047857; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 550px) { .grid { grid-template-columns: 1fr; } .card { padding: 30px 20px; } }
 </style>
 </head>
 <body>
-<div class="container">
-<h2>Enter Soil Parameters</h2>
-<p>Provide nutrient and environmental values for crop prediction.</p>
-<form method="POST">
-{% csrf_token %}
-<input name="N" placeholder="Nitrogen" required>
-<input name="P" placeholder="Phosphorus" required>
-<input name="K" placeholder="Potassium" required>
-<input name="temperature" placeholder="Temperature" required>
-<input name="humidity" placeholder="Humidity" required>
-<input name="ph" placeholder="pH" required>
-<input name="rainfall" placeholder="Rainfall" required>
-<button type="submit">Predict Crop</button required>
-</form>
+<div class="card">
+    <div class="header">
+        <h2>Field Parameters</h2>
+        <p>Enter the latest soil and climate data for accurate predictions.</p>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="section-title">Soil Nutrients (mg/kg)</div>
+        <div class="grid">
+            <div class="input-group">
+                <label>Nitrogen (N)</label>
+                <input type="number" step="any" name="N" required>
+            </div>
+            <div class="input-group">
+                <label>Phosphorus (P)</label>
+                <input type="number" step="any" name="P" required>
+            </div>
+            <div class="input-group full-width">
+                <label>Potassium (K)</label>
+                <input type="number" step="any" name="K" required>
+            </div>
+        </div>
+
+        <div class="section-title">Environmental Factors</div>
+        <div class="grid">
+            <div class="input-group">
+                <label>Temperature (°C)</label>
+                <input type="number" step="any" name="temperature" required>
+            </div>
+            <div class="input-group">
+                <label>Humidity (%)</label>
+                <input type="number" step="any" name="humidity" required>
+            </div>
+            <div class="input-group">
+                <label>Soil pH</label>
+                <input type="number" step="any" name="ph" required>
+            </div>
+            <div class="input-group">
+                <label>Rainfall (mm)</label>
+                <input type="number" step="any" name="rainfall" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn">Generate Recommendation</button>
+    </form>
 </div>
 </body>
 </html>

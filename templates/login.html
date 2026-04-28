@@ -1,42 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | SmartAgri Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-body{
-font-family:Arial;
-background: linear-gradient(135deg,#d4fc79,#96e6a1);
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-.container{
-background:white;
-padding:40px;
-border-radius:20px;
-box-shadow:0 8px 25px rgba(0,0,0,.2);
-width:400px;
-text-align:center;
-}
-h2{color:#2e7d32;}
-p{color:#555;line-height:1.6;}
-input{width:90%;padding:12px;margin:10px 0;border:1px solid #ccc;border-radius:10px;}
-button{background:#2e7d32;color:white;padding:12px 30px;border:none;border-radius:10px;}
-.message{color:red;}
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background: #f0fdf4; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+    .card {
+        background: #ffffff; padding: 45px 40px; border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.04); width: 100%; max-width: 420px;
+        animation: fadeUp 0.5s ease-out;
+    }
+    .header { text-align: center; margin-bottom: 30px; }
+    h2 { color: #065f46; font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    p { color: #6b7280; font-size: 0.95rem; }
+    .alert { background: #fee2e2; color: #b91c1c; padding: 12px; border-radius: 8px; font-size: 0.9rem; margin-bottom: 20px; text-align: center; font-weight: 500;}
+    .input-group { margin-bottom: 20px; text-align: left; }
+    .input-group label { display: block; font-size: 0.85rem; color: #374151; font-weight: 600; margin-bottom: 8px; }
+    .input-group input {
+        width: 100%; padding: 14px 16px; border: 1px solid #d1d5db; border-radius: 10px;
+        font-size: 1rem; color: #1f2937; transition: all 0.2s; background: #f9fafb;
+    }
+    .input-group input:focus { background: #fff; border-color: #059669; box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.1); outline: none; }
+    .btn {
+        width: 100%; background: #059669; color: white; padding: 14px; border: none;
+        border-radius: 10px; font-size: 1.05rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; margin-top: 10px;
+    }
+    .btn:hover { background: #047857; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2); }
+    .footer-link { text-align: center; margin-top: 25px; display: block; font-size: 0.9rem; color: #059669; text-decoration: none; font-weight: 500; }
+    .footer-link:hover { color: #047857; text-decoration: underline; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
-<div class="container">
-<h2>User Login</h2>
-<p>Login to access the prediction dashboard and generate crop recommendations.</p>
-{% if messages %}{% for message in messages %}<p class='message'>{{message}}</p>{% endfor %}{% endif %}
-<form method="POST">
-{% csrf_token %}
-<input name="username" placeholder="Username">
-<input type="password" name="password" placeholder="Password">
-<button type="submit">Login</button>
-</form>
+<div class="card">
+    <div class="header">
+        <h2>Welcome Back</h2>
+        <p>Sign in to access your dashboard</p>
+    </div>
+    
+    {% if messages %}{% for message in messages %}<div class='alert'>{{message}}</div>{% endfor %}{% endif %}
+    
+    <form method="POST">
+        {% csrf_token %}
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" name="username" required>
+        </div>
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
+        <button type="submit" class="btn">Log In</button>
+    </form>
+    <a href="/register/" class="footer-link">New here? Create an account</a>
 </div>
 </body>
 </html>
